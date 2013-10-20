@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Welcome to Sinatra!</h1>
+  <p>Hello, world!</p>
+  <form action="/post" method="POST">
+    Title of Note: <input type="text" name="title">
+    <input type="submit" value="Create Note" id="submit-button">
+    </br>
+    Content of Note: <input type="text" name="content">
+
+  </form>
+  <h3> Your Notes Are Below </h3>
+  <ul>
+    <% @notes.each do |note| %>
+      <li value="<%=note.id%>"><%= note.title %></li>
+        <div class='editable'><div>
+        <button class="edit-button" value="<%=note.id%>"> Edit This Note </button>
+        <ul><li><%= note.content %></li></ul>
+
+        <div class="choices">
+          <!-- <form action="/update" method="post"> -->
+            <!-- <input type="hidden" name="id_stored" value= <%= note.id %> >
+            <input type="hidden" name="title_stored" value= <%= note.title %> >
+            <input type="hidden" name="content_stored" value= <%= note.content %> >
+          </form> -->
+
+          <form action="/delete" method="post">
+            <button> Delete This Note</button>
+            <input type="hidden" name="note_delete_id" value="<%=note.id%>" >
+          </form>
+        </div>
+    <% end %>
+  </ul>
+</div>
